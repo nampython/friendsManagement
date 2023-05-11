@@ -5,6 +5,7 @@ import org.FriendsManagement.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.BodyExtractors;
 import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
@@ -19,8 +20,9 @@ public class EmployeeBeanController {
         this.employeeService = employeeService;
     }
 
-    protected final String GET_EMPLOYEE_BY_ID = "/api/v1/employees";
+    protected final String GET_EMPLOYEE_BY_ID = "/api/v1/employees/{id}";
     protected final String GET_EMPLOYEES = "/api/v1/employees";
+    protected final String UPDATE_EMPLOYEE = "/api/v1/employee/update";
 
 //    @Bean
 //    public RouterFunction<ServerResponse> getEmployeesRouter() {
@@ -49,6 +51,14 @@ public class EmployeeBeanController {
                                         RequestPredicates.GET(GET_EMPLOYEE_BY_ID),
                                         request -> ServerResponse.ok().body(employeeService.findEmployeeById(request.pathVariable("id")), Employee.class)
                                 ))
-                        ;
+                        .and(
+                                RouterFunctions.route(
+                                        RequestPredicates.POST(UPDATE_EMPLOYEE),
+                                        request -> request.body(BodyExtractors.toMono(Employee.class))
+                                                .doOnNext(employeeService::updateEmployee)
+                                                .then(ServerResponse.ok().build())
+                                )
+                        )
+                ;
     }
 }
