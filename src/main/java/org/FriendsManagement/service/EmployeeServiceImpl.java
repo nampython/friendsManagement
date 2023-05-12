@@ -1,13 +1,10 @@
 package org.FriendsManagement.service;
 
-import com.github.javafaker.Faker;
 import org.FriendsManagement.model.Employee;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.core.publisher.SynchronousSink;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
