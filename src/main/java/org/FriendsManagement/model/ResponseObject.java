@@ -1,21 +1,17 @@
 package org.FriendsManagement.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import reactor.core.publisher.Mono;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-@Getter
-@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class ResponseObject {
-    private String status;
-    private String message;
-    private List<Mono<User>> data;
-
-    public ResponseObject(String status, String message, List<Mono<User>> object) {
-        this.status = status;
-        this.message = message;
-        this.data = object;
-    }
+    private String timestamp = String.valueOf(System.currentTimeMillis());
+    private int status;
+    private String error;
+    private String warnings;
+    private String path;
+    private Object data;
 }

@@ -1,6 +1,6 @@
 package org.FriendsManagement.controller;
 
-import org.FriendsManagement.model.ResponseObject;
+import org.FriendsManagement.model.ResponseObjectTest;
 import org.FriendsManagement.model.User;
 import org.FriendsManagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,12 +42,12 @@ public class UserController {
     }
 
     @GetMapping(GET_USER_BY_ID)
-    public Mono<ResponseEntity<ResponseObject>> findUserById(@PathVariable String userId) {
+    public Mono<ResponseEntity<ResponseObjectTest>> findUserById(@PathVariable String userId) {
         Mono<User> userByID = userService.findById(userId);
         return userByID.flatMap(
                 user -> {
                     return Mono.just(ResponseEntity.ok().body(
-                            new ResponseObject("ok",
+                            new ResponseObjectTest("ok",
                                     "Find user by id successfully",
                                     Collections.singletonList(userByID))
                     ));
