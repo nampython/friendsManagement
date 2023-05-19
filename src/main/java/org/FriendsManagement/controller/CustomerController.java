@@ -2,11 +2,9 @@ package org.FriendsManagement.controller;
 
 import org.FriendsManagement.model.Customer;
 import org.FriendsManagement.model.ResponseObject;
-import org.FriendsManagement.respository.CustomerDao;
-import org.FriendsManagement.respository.CustomerDaoImpl;
+import org.FriendsManagement.repository.CustomerDao;
 import org.FriendsManagement.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;

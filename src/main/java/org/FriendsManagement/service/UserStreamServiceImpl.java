@@ -1,7 +1,7 @@
 package org.FriendsManagement.service;
 
 import org.FriendsManagement.model.User;
-import org.FriendsManagement.respository.UserRepository;
+import org.FriendsManagement.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

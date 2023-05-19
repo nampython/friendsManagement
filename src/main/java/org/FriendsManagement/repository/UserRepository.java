@@ -1,4 +1,4 @@
-package org.FriendsManagement.respository;
+package org.FriendsManagement.repository;
 
 import org.FriendsManagement.model.User;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;

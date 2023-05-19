@@ -1,4 +1,4 @@
-package org.FriendsManagement.respository;
+package org.FriendsManagement.repository;
 
 import org.FriendsManagement.model.Customer;
 import reactor.core.publisher.Flux;

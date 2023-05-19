@@ -1,7 +1,6 @@
-package org.FriendsManagement.respository;
+package org.FriendsManagement.repository;
 
 import org.FriendsManagement.model.Customer;
-import org.FriendsManagement.model.User;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
