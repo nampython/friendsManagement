@@ -5,24 +5,19 @@ import org.FriendsManagement.respository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.Collections;
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserStreamServiceImpl implements UserStreamService {
 
     private final UserRepository userRepository;
-    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserStreamServiceImpl.class);
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserStreamServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
