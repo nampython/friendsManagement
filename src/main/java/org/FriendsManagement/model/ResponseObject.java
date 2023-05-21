@@ -14,4 +14,12 @@ public class ResponseObject {
     private String warnings;
     private String path;
     private Object data;
+//
+//    {
+//        "timestamp": "2023-05-20T09:09:32.723+00:00",
+//            "path": "/users/friends",
+//            "status": 500,
+//            "error": "Internal Server Error",
+//            "requestId": "ac9514f0-2"
+//    }
 }

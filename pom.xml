@@ -16,7 +16,6 @@
 
     <dependencies>
 
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
@@ -29,10 +28,11 @@
         </dependency>
 
 
+        <!-- https://mvnrepository.com/artifact/com.github.jasync-sql/jasync-r2dbc-mysql -->
         <dependency>
             <groupId>com.github.jasync-sql</groupId>
             <artifactId>jasync-r2dbc-mysql</artifactId>
-            <version>2.1.7</version>
+            <version>2.1.23</version>
         </dependency>
 
         <dependency>

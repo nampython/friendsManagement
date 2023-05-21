@@ -10,8 +10,8 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "block", schema = "friendmanagement", catalog = "")
-public class BlockEntity {
+@Table(name = "block", schema = "friendsmanagement", catalog = "")
+public class Block {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "block_id")
@@ -51,7 +51,7 @@ public class BlockEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BlockEntity that = (BlockEntity) o;
+        Block that = (Block) o;
         return blockId == that.blockId && blockerId == that.blockerId && blockedId == that.blockedId;
     }
 
