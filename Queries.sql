@@ -1,4 +1,49 @@
 /**
+  1. As a user, I need an API to create a friend connection between two email
+addresses.
+The API should receive the following JSON request:
+{
+ friends:
+ [
+ 'andy@example.com',
+ 'john@example.com'
+ ]
+}
+The API should return the following JSON response on success:
+{
+ "success": true
+}
+Please propose JSON responses for any errors that might occur
+ */
+
+DELIMITER //
+CREATE PROCEDURE CreateFriendConnection(IN email1 VARCHAR(255), IN email2 VARCHAR(255))
+BEGIN
+    DECLARE user1_id INT;
+    DECLARE user2_id INT;
+
+    -- Retrieve the user IDs for the given email addresses
+    SELECT user_id INTO user1_id FROM User WHERE email = email1;
+    SELECT user_id INTO user2_id FROM User WHERE email = email2;
+
+    -- Check if the friend connection already exists
+    IF NOT EXISTS (
+        SELECT 1
+        FROM Friendship
+        WHERE (user_id = user1_id AND friend_id = user2_id)
+            OR (user_id = user2_id AND friend_id = user1_id)
+    ) THEN
+        -- Insert the friend connection
+        INSERT INTO Friendship (user_id, friend_id, status)
+        VALUES (user1_id, user2_id, 'accepted');
+    END IF;
+END //
+DELIMITER ;
+
+call CreateFriendConnection('andy@example.com', 'kate@example.com');
+
+
+/**
   2. As a user, I need an API to retrieve the friends list for an email address.
 The API should receive the following JSON request:
 {
@@ -94,3 +139,51 @@ where F1.user_id = 1 AND
       F2.user_id = 2;
 
 select * from friendship;
+
+
+/**
+  4. As a user, I need an API to subscribe to updates from an email address.
+Please note that "subscribing to updates" is NOT equivalent to "adding a friend
+connection".
+The API should receive the following JSON request:
+{
+ "requestor": "lisa@example.com",
+ "target": "john@example.com"
+}
+The API should return the following JSON response on success:
+{
+ "success": true
+}
+Please propose JSON responses for any errors that might occur.
+ */
+
+DELIMITER //
+
+CREATE PROCEDURE SubscribeToUpdates(
+    IN subscriberEmail VARCHAR(255),
+    IN targetEmail VARCHAR(255)
+)
+BEGIN
+    DECLARE subscriberId INT;
+    DECLARE targetId INT;
+
+    -- Get the subscriber ID
+    SELECT user_id INTO subscriberId
+    FROM user
+    WHERE email = subscriberEmail;
+
+    -- Get the target ID
+    SELECT user_id INTO targetId
+    FROM user
+    WHERE email = targetEmail;
+
+    IF subscriberId IS NOT NULL AND targetId IS NOT NULL THEN
+        -- Insert into subscription table
+        INSERT INTO subscription (subscriber_id, target_id)
+        VALUES (subscriberId, targetId);
+    END IF;
+END //
+
+DELIMITER ;
+
+CALL SubscribeToUpdates('andy@example.com', 'john@example.com');

@@ -56,7 +56,6 @@ VALUES ('andy@example.com'),
        ('lisa@example.com'),
        ('kate@example.com'),
        ('tom@example.com');
-
 -- Insert sample records into the Friendship table
 INSERT INTO friendship (user_id, friend_id, status)
 VALUES (1, 2, 'accepted'),
@@ -65,13 +64,18 @@ VALUES (1, 2, 'accepted'),
        (3, 4, 'accepted'),
        (4, 5, 'accepted');
 update friendship set status = 'accepted' where user_id = 2;
+delete from friendship where friendship_id = 6;
 select * from friendship;
+
 
 -- Insert sample records into the Subscription table
 INSERT INTO subscription (subscriber_id, target_id)
 VALUES (2, 1),
        (4, 2),
        (5, 3);
+
+delete from subscription where subscriber_id = 4;
+select * from subscription;
 
 -- Insert sample records into the Block table
 INSERT INTO block (blocker_id, blocked_id)

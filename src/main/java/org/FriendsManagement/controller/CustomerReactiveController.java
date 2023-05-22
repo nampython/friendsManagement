@@ -1,6 +1,7 @@
 package org.FriendsManagement.controller;
 
 import org.FriendsManagement.model.friends.Friendship;
+import org.FriendsManagement.model.friends.Subscription;
 import org.FriendsManagement.model.friends.User;
 import org.FriendsManagement.service.FriendShipReactiveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,14 @@ public class CustomerReactiveController {
         return friendShipReactiveService.getCommonFriends(email1, email2);
     }
 
+    @PostMapping(value = "/users/connection")
+    public Mono<Friendship> createConnectionFriend(@RequestParam String email1, @RequestParam String email2) {
+        return friendShipReactiveService.createFriendConnection(email1, email2);
+    }
+
+
+    @PostMapping(value = "/users/subscribeToUpdates")
+    public Mono<Subscription> subscribeToUpdates(@RequestParam String email1, @RequestParam String email2) {
+        return friendShipReactiveService.subscribeToUpdates(email1, email2);
+    }
 }
